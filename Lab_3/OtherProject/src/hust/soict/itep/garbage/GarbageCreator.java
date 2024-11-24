@@ -1,0 +1,28 @@
+package hust.soict.itep.garbage;
+// Tran Huy Hoang Anh - 20226076
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class GarbageCreator {
+    public static void main(String[] args) throws IOException {
+        // Đường dẫn của file test.txt trong package
+        String filename = "hust/soict/itep/garbage/test.txt";
+        byte[] inputBytes = {0};
+        long startTime, endTime;
+        try {
+            String filePath = ClassLoader.getSystemResource(filename).getPath();
+            inputBytes = Files.readAllBytes(Paths.get(filePath));
+        } catch (NullPointerException e) {
+            System.out.println("File not found: " + filename);
+            return;
+        }
+        startTime = System.currentTimeMillis();
+        String outputString = "";
+        for (byte b : inputBytes) {
+            outputString += (char) b;
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("Execution time: " + (endTime - startTime) + " ms");
+    }
+}

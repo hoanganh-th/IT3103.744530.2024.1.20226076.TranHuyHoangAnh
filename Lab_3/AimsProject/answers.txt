@@ -1,0 +1,17 @@
+Question1: Is JAVA a Pass by Value or a Pass by Reference programming language? 
+Answer: Java là ngôn ngữ lập trình "Pass by Value". 
+- Khi bạn truyền một tham số kiểu nguyên thủy (như int, float, char,...) vào phương thức, giá trị của biến đó sẽ được sao chép và truyền vào phương thức. Thay đổi giá trị của tham số trong phương thức sẽ không ảnh hưởng đến giá trị của biến ban đầu.
+- Đối với đối tượng, Java vẫn truyền tham số theo giá trị, nhưng giá trị này là reference (tham chiếu đến đối tượng), chứ không phải chính đối tượng. Điều này có nghĩa là nếu bạn thay đổi thuộc tính của đối tượng trong phương thức, đối tượng ban đầu sẽ bị thay đổi. Tuy nhiên, nếu bạn gán lại tham chiếu (ví dụ như gán đối tượng khác cho tham số), đối tượng ban đầu sẽ không bị ảnh hưởng.
+
+Question2: After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain? 
+Answer: Sau khi thực hiện phương thức swap(jungleDVD, cinderellaDVD), tiêu đề của hai đối tượng vẫn giữ nguyên vì trong Java, tham số được truyền vào phương thức là giá trị của đối tượng, không phải là tham chiếu đến đối tượng. Khi ta thay đổi giá trị của tham số bên trong phương thức (như việc đổi chỗ giữa o1 và o2), sự thay đổi này không ảnh hưởng đến giá trị của các đối tượng gốc. 
+
+Question3: After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed? 
+Answer: 
+Sau khi gọi changeTitle(jungleDVD, cinderellaDVD.getTitle()), tiêu đề của jungleDVD bị thay đổi vì trong phương thức changeTitle, ta thực hiện thay đổi trực tiếp trên đối tượng dvd (được truyền vào phương thức) bằng cách gọi dvd.setTitle(title). Điều này ảnh hưởng trực tiếp đến đối tượng gốc được truyền vào phương thức. 
+ 
+
+
+
+
+
