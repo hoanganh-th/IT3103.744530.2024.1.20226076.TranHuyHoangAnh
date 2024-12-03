@@ -1,0 +1,36 @@
+Alternatively, to compare items in the cart, instead of using Comparator, we can use the Comparable interface and override the compareTo() method. You can refer to the Java docs to see the information of this interface.
+Suppose we are taking this Comparable interface approach.
+	- What class should implement the Comparable interface? 
+Lớp nên triển khai giao diện Comparable là lớp chứa đối tượng mà bạn muốn so sánh, trong trường hợp này, là abstract class “Media”. 
+
+	- In those classes, how should you implement the compareTo()method be to reflect the ordering that we want?
+Để triển khai phương thức compareTo() thì cần so sánh các thuộc tính của đối tượng. Đối với yêu cầu sắp xếp theo title sau đó là cost, có thể triển khai như sau:
+@Override
+public int compareTo(Media other) 
+{
+	if (!this.getTitle().equals(other.getTitle())) {
+		return this.getTitle().compareTo(other.getTitle());
+	} else {
+		return Double.compare(this.getCost(), other.getCost());
+	}
+}
+		 	- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+Không, nếu chỉ sử dụng giao diện Comparable, chúng ta không thể có đồng thời hai quy tắc sắp xếp khác nhau (theo tiêu đề rồi giá, và theo giá rồi tiêu đề). Lý do là vì Comparable chỉ cho phép định nghĩa một quy tắc sắp xếp duy nhất thông qua phương thức compareTo()
+
+	- Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+public class DVD extends Media implements Comparable<DVD> { 
+@Override
+public int compareTo(DVD other) {
+        if (!this.getTitle().equals(other.getTitle())) {
+		return this.getTitle().compareTo(other.getTitle());
+	} else if (this instanceof DVD && other instanceof DVD) {
+            	return Integer.compare(((DVD) other).getLength(), ((DVD)this).getLength());
+        } else {
+            return Double.compare(this.getCost(), other.getCost());
+	} 
+}
+}
+
+
+
+
